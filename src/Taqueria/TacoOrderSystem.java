@@ -10,6 +10,10 @@ public class TacoOrderSystem {
 
     ArrayList<Order> activeOrderList;
     ArrayList<Order> finishedOrderList;
+    boolean run = true;
+    String scannerInput;
+    int orderID;
+
 
     public TacoOrderSystem(){
 
@@ -30,6 +34,9 @@ public class TacoOrderSystem {
         }
 
     public void createOrder(){
+        //getOrderID() -> sätt orderID på objektet från textfilen
+        //skapa order...
+        // när vi har fått tillbaka order-objektet, avsluta med att uppdatera orderfilen med nya ID: görs nu i Order-class
     }
 
     public String searchOrdersByStatus(Status status, ArrayList<Order> orderList){ //vill vi kunna söka i bägge listor?
