@@ -5,6 +5,7 @@ import Taqueria.Order.Status;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TacoOrderSystem {
 

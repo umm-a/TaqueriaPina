@@ -8,7 +8,6 @@ import Taqueria.TacoInterface.*;
 
 public class Order {
 
-
     public List<Taco> tacoList = new ArrayList<>();
     public double totalPrice;
     public int orderID = getOrderID() +1; // hämtar senaste ordernr från filen och lägger till 1
