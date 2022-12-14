@@ -1,4 +1,6 @@
-package Taqueria;
+package Topping;
+
+import Taqueria.TacoDecorator;
 
 public class ToppingMeat extends TacoDecorator {
     private final Taco taco;
