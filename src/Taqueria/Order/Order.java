@@ -44,7 +44,7 @@ public class Order {
 
         status = Status.ORDERED;
         orderID = getOrderID() +1;
-        setOrderID(nextID);
+        setOrderID(orderID);
 
     }
 

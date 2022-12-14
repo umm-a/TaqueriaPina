@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class KitchenGUI extends JFrame{
-        JLabel tacoTitleLabel = new JLabel("\uD83C\uDF43 TaqueriaPiña's beställningar \uD83C\uDF43");
+        JLabel tacoTitleLabel = new JLabel("\uD83C\uDF43 Taqueria Piña's beställningar \uD83C\uDF43");
         JPanel panel = new JPanel();
         TextArea orderText = new TextArea();
         JScrollPane scrollPane = new JScrollPane(orderText);
@@ -14,7 +14,7 @@ public class KitchenGUI extends JFrame{
         }
 
         public void displayActiveOrderList(){
-            setTitle("\uD83C\uDF43 TaqueriaPiña \uD83C\uDF43");
+            setTitle("\uD83C\uDF43 Taqueria Piña \uD83C\uDF43");
             panel.setLayout(new BorderLayout());
             panel.add(tacoTitleLabel, BorderLayout.NORTH);
             panel.add(scrollPane, BorderLayout.CENTER);
