@@ -1,4 +1,5 @@
 package Taqueria;
+import TacoInterface.Taco;
 
 public abstract class TacoDecorator implements Taco {
     private Taco taco;
@@ -7,7 +8,7 @@ public abstract class TacoDecorator implements Taco {
         return ""; //Kommer aldrig att användas
     }
 
-    public Double getPrice(){
+    public double getPrice(){
         return 0.0; //Kommer aldrig att användas
     }
 
