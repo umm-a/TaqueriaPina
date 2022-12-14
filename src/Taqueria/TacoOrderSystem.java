@@ -13,7 +13,7 @@ public class TacoOrderSystem {
 
     }
 
-    public String searchOrdersByStatus(Enum e, ArrayList<Order> orderList){ //vill vi kunna söka i bägge listor?
+    public String searchOrdersByStatus(Status status, ArrayList<Order> orderList){ //vill vi kunna söka i bägge listor?
         String temp = "";
         return temp;
     }
@@ -22,7 +22,7 @@ public class TacoOrderSystem {
         String temp = "";
         return temp;
     }
-    public void changeOrderStatus(int id, Enum e){
+    public void changeOrderStatus(int id, Status status){
 
     }
     public void updateKitchenGUI(ArrayList<Order> activeOrderList){
