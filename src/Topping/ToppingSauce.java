@@ -1,6 +1,8 @@
-package Taqueria;
+package Topping;
 
-public class ToppingSauce extends TacoDecorator{
+import Taqueria.TacoDecorator;
+
+public class ToppingSauce extends TacoDecorator {
     private final Taco taco;
     private String name;
     private Double price;
