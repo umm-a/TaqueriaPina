@@ -1,5 +1,8 @@
 package Taqueria;
 
+import Taqueria.Order.Order;
+import Taqueria.Order.Status;
+
 import java.util.ArrayList;
 
 public class TacoOrderSystem {
