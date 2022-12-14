@@ -89,6 +89,7 @@ public class TacoOrderSystem {
 
                 case "4" -> {
                     activeOrderList.add(order);
+                    System.out.println("Order sparad");
                     create = false;
                 }
 
