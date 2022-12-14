@@ -40,10 +40,4 @@ public class KitchenGUI extends JFrame{
             }
         }*/
         }
-
-
-
-        public static void main(String[] args) {
-            KitchenGUI k = new KitchenGUI();
-        }
 }
