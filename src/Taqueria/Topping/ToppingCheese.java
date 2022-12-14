@@ -1,7 +1,7 @@
 package Taqueria.Topping;
 
 import Taqueria.TacoDecorator;
-import TacoInterface.Taco;
+import Taqueria.TacoInterface.Taco;
 
 public class ToppingCheese extends TacoDecorator {
     private final Taco taco;

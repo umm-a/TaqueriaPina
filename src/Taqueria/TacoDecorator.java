@@ -1,5 +1,5 @@
 package Taqueria;
-import TacoInterface.Taco;
+import Taqueria.TacoInterface.Taco;
 
 public abstract class TacoDecorator implements Taco {
     private Taco taco;
