@@ -1,4 +1,4 @@
-package Taqueria;
+package Taqueria.Order;
 
 public enum Status {
 
