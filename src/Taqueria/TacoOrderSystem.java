@@ -12,7 +12,22 @@ public class TacoOrderSystem {
     ArrayList<Order> finishedOrderList;
 
     public TacoOrderSystem(){
-    }
+
+            KitchenGUI kitchenGUI = new KitchenGUI();
+            while (run) {
+                Scanner scan = new Scanner(System.in);
+                scannerInput = scan.toString();
+                System.out.println("Välj ett val med 1, 2, eller 3: \n1. Skapa beställning: \n2. Sök beställning: \n3. Ändra status på beställning: ");
+
+                switch (scannerInput){
+                    case "1": createOrder();
+
+                    case "2":
+                  //      searchOrder();
+                    case "3":
+                }
+             }
+        }
 
     public void createOrder(){
     }
