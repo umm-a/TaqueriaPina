@@ -18,10 +18,6 @@ public class Order {
     public int getOrderID() {
         int tempOrderID;
         try (BufferedReader readOrderID = new BufferedReader(new FileReader("resources/orderID.txt"))){
-            String line = readOrderID.readLine();
-            while (line != null) {
-                line = readOrderID.readLine();
-            }
             tempOrderID = Integer.parseInt(readOrderID.readLine());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -30,7 +26,7 @@ public class Order {
     }
     public void setOrderID(int number) {
         try (BufferedWriter writeOrderID = new BufferedWriter(new FileWriter("resources/orderID.txt"))){
-            writeOrderID.write(number);
+            writeOrderID.write(String.valueOf(number));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -40,6 +36,10 @@ public class Order {
         status = Status.ORDERED;
         // fyll på
         setOrderID(orderID);
+    }
+
+    public void addTaco(Taco taco) {
+        tacoList.add(taco);
     }
 
 }
