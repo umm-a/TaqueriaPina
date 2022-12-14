@@ -6,7 +6,7 @@ public class Order {
 
     public static int nextID = 1;
 
-    public List<Taco> = new ArrayList<>();
+    public List<Taco> tacoList = new ArrayList<>();
     public double totalPrice;
     public final int orderID;
     public String customerName;
