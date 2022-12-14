@@ -1,6 +1,7 @@
-package Topping;
+package Taqueria.Topping;
 
 import Taqueria.TacoDecorator;
+import TacoInterface.Taco;
 
 public class ToppingPineapple extends TacoDecorator {
     private final Taco taco;
@@ -14,7 +15,7 @@ public class ToppingPineapple extends TacoDecorator {
         return taco.getDescription() + " + Ananas (10 kr)";
     }
 
-    public Double getPrice(){
+    public double getPrice(){
         return taco.getPrice() + 10;
     }
 }
