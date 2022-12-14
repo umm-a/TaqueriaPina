@@ -8,7 +8,7 @@ public class ToppingPineapple extends TacoDecorator {
     private String name;
     private Double price;
 
-    ToppingPineapple(Taco taco) {
+    public ToppingPineapple(Taco taco) {
         this.taco = taco;
     }
     public String getDescription(){
