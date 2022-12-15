@@ -13,6 +13,7 @@ public class KitchenGUI extends JFrame{
         JPanel panel = new JPanel();
         TextArea orderText = new TextArea();
         JScrollPane scrollPane = new JScrollPane(orderText);
+        Font font = new Font("times new roman", Font.PLAIN,25);
 
         KitchenGUI(){
             displayActiveOrderList();
@@ -24,9 +25,10 @@ public class KitchenGUI extends JFrame{
             panel.add(tacoTitleLabel, BorderLayout.NORTH);
             panel.add(scrollPane, BorderLayout.CENTER);
             orderText.setEditable(false);
+            orderText.setFont(font);
             add(panel);
             pack();
-            setSize(400, 400);
+            setSize(800, 500);
             setVisible(true);
             setLocationRelativeTo(null);
             setDefaultCloseOperation(EXIT_ON_CLOSE);
