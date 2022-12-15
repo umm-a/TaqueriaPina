@@ -5,7 +5,7 @@ public class Tortilla implements Taco {
     @Override
     public String getDescription() {
         String description = "Tortilla";
-        return description + " (" + price + ")";
+        return description + " (" + price + " kr)";
     }
     @Override
     public double getPrice() {
