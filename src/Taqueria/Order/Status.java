@@ -1,9 +1,16 @@
 package Taqueria.Order;
 
 public enum Status {
+    ORDERED("Beställd"),
+    READY("Redo"),
+    DELIVERED("Levererad");
 
-    ORDERED,
-    DONE,
-    PICKED_UP
+    private final String statusText;
 
+    Status(String text) {
+        this.statusText = text;
+    }
+    public String toString() {
+        return statusText;
+    }
 }
