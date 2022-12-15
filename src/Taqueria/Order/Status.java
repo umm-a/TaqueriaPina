@@ -7,7 +7,10 @@ public enum Status {
 
     private final String statusText;
 
-    Status(String statusText) {
-        this.statusText = statusText;
+    Status(String text) {
+        this.statusText = text;
+    }
+    public String toString() {
+        return statusText;
     }
 }

@@ -19,7 +19,7 @@ public class TacoOrderSystem {
     ArrayList<Order> activeOrderList = new ArrayList<>();
     ArrayList<Order> finishedOrderList = new ArrayList<>();
     boolean run = true;
-    int orderID;
+    int systemOrderID = Order.getOrderIDFromFile();
 
 
     public TacoOrderSystem() {
@@ -28,13 +28,24 @@ public class TacoOrderSystem {
         KitchenGUI kitchenGUI = new KitchenGUI();
         while (run) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Välj ett val med 1, 2, eller 3: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning ");
+            System.out.println("Välj ett val med 1, 2, eller 3: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning \n4. Avsluta");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
                 case "1" -> startOrder();
                 case "2" -> searchOrder();
                 case "3" -> changeOrderStatus();
-                default -> System.out.println("Ej giltigt val");
+                case "4" -> {
+                    System.out.println("Vill du verkligen avsluta programmet? (J/N)");
+                    if (scan.nextLine().equalsIgnoreCase("J")) {
+                        System.out.println("Programmet avslutas");
+                        System.out.println("Tack för att du använder TacoOrderSystem!");
+                        run = false;
+                        System.exit(1);
+                    } else {
+                        System.out.println("Avslut av programmet avbruten\n");
+                    }
+                }
+                default -> System.out.println("Felaktig inmatning, försök igen");
             }
         }
     }
@@ -72,7 +83,7 @@ public class TacoOrderSystem {
 
         while (create) {
 
-            System.out.println("Välj bas: 1. Tortilla, 2. Sallad, 3. Taco Shell.\nEller välj: 4. Order färdig.");
+            System.out.println("Välj bas: 1. Tortilla, 2. Sallad, 3. Taco Shell.\n4. För att skicka beställning. 5. Avbryt beställning.");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
 
@@ -90,25 +101,31 @@ public class TacoOrderSystem {
 
                 case "4" -> {
                     if (order.getTacoList().size() > 0) {
-                        order.getOrderID();
-                        order.setOrderID(orderID + 1);
-
+                        order.setOrderID(systemOrderID);
                         order.setStatus(Status.ORDERED);
                         activeOrderList.add(order);
-                        System.out.println("Beställning skapad. Ordernummer: " + order.getOrderID() +
-                                "\nKund: " + order.getCustomerName() + ", " + order.getCustomerPhone() +
-                                "\nStatus: " + order.getStatus().toString() +
-                                "\nAntal tacos: " + order.getTacoList().size() +
-                                "\nTotalpris: " + order.getTotalPrice() + " kr");
+                        System.out.println("Beställning skapad. \n" + order);
                         updateKitchenGUI();
+
+                        // räklnar upp och uppdaterar filen med orderID om beställningen lyckades
+                        systemOrderID++;
+                        Order.writeOrderIDToFile(systemOrderID);
                     } else {
                         System.out.println("Du måste lägga till minst en bas för att skapa en beställning\n" +
                                 "Beställningen har inte skapats.");
-
                     }
                     create = false;
                 }
 
+                case "5" -> {
+                    System.out.println("Vill du avbryta beställningen? (J/N)");
+                    if (scan.nextLine().equalsIgnoreCase("J")) {
+                        System.out.println("Beställningen har avbrutits");
+                        create = false;
+                    } else {
+                        System.out.println("Du kan fortsätta med beställningen");
+                    }
+                }
             }
         }
     }
@@ -136,7 +153,7 @@ public class TacoOrderSystem {
     public void addTacoToOrder(Taco taco, Order order) {
 
         order.addTaco(taco);
-        System.out.println("Lade på order: " + taco.getDescription());
+        System.out.println("Tillagd i order: " + taco.getDescription());
     }
 
     public void searchOrder() { //är metodnamnet passande?
@@ -148,17 +165,15 @@ public class TacoOrderSystem {
             searchString = scan.nextLine();
             for (Order order : activeOrderList) {
                 assert searchString != null;
-                if (order.getCustomerName().contains(searchString) || order.getCustomerPhone().contains(searchString)) {
-                    orderInfo.append(order);
-                } else if (order.getOrderID() == Integer.parseInt(searchString)) {
+                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
             for (Order order : finishedOrderList) {
                 assert searchString != null;
-                if (order.getCustomerName().contains(searchString) || order.getCustomerPhone().contains(searchString)) {
-                    orderInfo.append(order);
-                } else if (order.getOrderID() == Integer.parseInt(searchString)) {
+                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
@@ -166,7 +181,7 @@ public class TacoOrderSystem {
         if (orderInfo.length() == 0) {
             System.out.println("Ingen matchning hittades");
         } else {
-            System.out.println(orderInfo);
+            System.out.println("Matchande ordrar: \n" + orderInfo);
         }
     }
 
