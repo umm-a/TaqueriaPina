@@ -8,12 +8,61 @@ import Taqueria.TacoInterface.*;
 
 public class Order {
 
-    public List<Taco> tacoList = new ArrayList<>();
-    public double totalPrice;
-    public int orderID = getOrderID() +1; // hämtar senaste ordernr från filen och lägger till 1
-    public String customerName;
-    public String customerPhone;
-    public Status status;
+    private List<Taco> tacoList = new ArrayList<>();
+    private double totalPrice;
+    private String customerName;
+    private String customerPhone;
+    private Status status;
+
+    public Order(List<Taco> tacoList, double totalPrice, String customerName, String customerPhone, Status status) {
+        this.tacoList = tacoList;
+        this.totalPrice = totalPrice;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.status = status;
+    }
+    public Order() {
+    }
+
+    public List<Taco> getTacoList() {
+        return tacoList;
+    }
+
+    public void setTacoList(List<Taco> tacoList) {
+        this.tacoList = tacoList;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public int getOrderID() {
         int tempOrderID;
@@ -32,14 +81,12 @@ public class Order {
         }
     }
 
-    public Order() {
-        status = Status.ORDERED;
-        // fyll på
-        setOrderID(orderID);
-    }
-
     public void addTaco(Taco taco) {
         tacoList.add(taco);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

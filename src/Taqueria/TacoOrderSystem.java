@@ -32,8 +32,8 @@ public class TacoOrderSystem {
             scannerInput = scan.nextLine();
             switch (scannerInput) {
                 case "1" -> startOrder();
-                //case "2" -> searchOrder();
-                //case "3" -> changeOrderStatus();
+                case "2" -> searchOrder();
+                case "3" -> changeOrderStatus();
                 default -> System.out.println("Ej giltigt val");
             }
         }
@@ -46,6 +46,29 @@ public class TacoOrderSystem {
         Scanner scan = new Scanner(System.in);
 
         Order order = new Order();
+
+        // Lägger till kundinfo
+        while (true) {
+            if (order.getCustomerName() != null && order.getCustomerPhone() != null) {
+                break;
+            } else if (order.getCustomerName() == null) {
+                System.out.println("Ange kundens namn: ");
+                scannerInput = scan.nextLine().trim();
+                if (scannerInput.length() > 0) {
+                    order.setCustomerName(scannerInput);
+                } else {
+                    System.out.println("Felaktig inmatning av namn, försök igen");
+                }
+            } else if (order.getCustomerPhone() == null) {
+                System.out.println("Ange kundens telefonnummer: ");
+                scannerInput = scan.nextLine().trim();
+                if (scannerInput.matches("[0-9]+")) {
+                    order.setCustomerPhone(scannerInput);
+                } else {
+                    System.out.println("Felaktig inmatning av telefonnummer, försök igen");
+                }
+            }
+        }
 
         while (create) {
 
@@ -66,8 +89,23 @@ public class TacoOrderSystem {
                 }
 
                 case "4" -> {
-                    activeOrderList.add(order);
-                    System.out.println("Order sparad");
+                    if (order.getTacoList().size() > 0) {
+                        order.getOrderID();
+                        order.setOrderID(orderID + 1);
+
+                        order.setStatus(Status.ORDERED);
+                        activeOrderList.add(order);
+                        System.out.println("Beställning skapad. Ordernummer: " + order.getOrderID() +
+                                "\nKund: " + order.getCustomerName() + ", " + order.getCustomerPhone() +
+                                "\nStatus: " + order.getStatus().toString() +
+                                "\nAntal tacos: " + order.getTacoList().size() +
+                                "\nTotalpris: " + order.getTotalPrice() + " kr");
+                        updateKitchenGUI();
+                    } else {
+                        System.out.println("Du måste lägga till minst en bas för att skapa en beställning\n" +
+                                "Beställningen har inte skapats.");
+
+                    }
                     create = false;
                 }
 
@@ -101,21 +139,80 @@ public class TacoOrderSystem {
         System.out.println("Lade på order: " + taco.getDescription());
     }
 
-    public String searchOrdersByStatus(Status status, ArrayList<Order> orderList) { //vill vi kunna söka i bägge listor?
-        String temp = "";
-        return temp;
+    public void searchOrder() { //är metodnamnet passande?
+        String searchString = null;
+        StringBuilder orderInfo = new StringBuilder();
+        System.out.println("Sök efter kundinformation, status eller ordernummer: ");
+        Scanner scan = new Scanner(System.in);
+        if (scan.hasNextLine()) {
+            searchString = scan.nextLine();
+            for (Order order : activeOrderList) {
+                assert searchString != null;
+                if (order.getCustomerName().contains(searchString) || order.getCustomerPhone().contains(searchString)) {
+                    orderInfo.append(order);
+                } else if (order.getOrderID() == Integer.parseInt(searchString)) {
+                    orderInfo.append(order);
+                }
+            }
+            for (Order order : finishedOrderList) {
+                assert searchString != null;
+                if (order.getCustomerName().contains(searchString) || order.getCustomerPhone().contains(searchString)) {
+                    orderInfo.append(order);
+                } else if (order.getOrderID() == Integer.parseInt(searchString)) {
+                    orderInfo.append(order);
+                }
+            }
+        }
+        if (orderInfo.length() == 0) {
+            System.out.println("Ingen matchning hittades");
+        } else {
+            System.out.println(orderInfo);
+        }
     }
 
-    public String searchOrder(String id, ArrayList<Order> activeOrderList, ArrayList<Order> finishedOrderList) { //är metodnamnet passande?
-        String temp = "";
-        return temp;
+    public void changeOrderStatus() {
+        Scanner scan = new Scanner(System.in);
+        String scannerInput;
+        int orderID = 0;
+        Status status = null;
+        while (true) {
+            if (orderID != 0 && status != null) {
+                break;
+            } else if (orderID == 0) {
+                System.out.println("Ange ordernummer: ");
+                scannerInput = scan.nextLine();
+                if (scannerInput.matches("[0-9]+")) {
+                    orderID = Integer.parseInt(scannerInput);
+                } else {
+                    System.out.println("Felaktig inmatning av ordernummer, försök igen");
+                }
+            } else if (status == null) {
+                System.out.println("Ange status: 1. BESTÄLLD, 2. REDO, 3. LEVERERAD");
+                scannerInput = scan.nextLine();
+                switch (scannerInput) {
+                    case "1" -> status = Status.ORDERED;
+                    case "2" -> status = Status.READY;
+                    case "3" -> status = Status.DELIVERED;
+                    default -> System.out.println("Felaktig inmatning av status, försök igen");
+                }
+                System.out.println("Status på order #" + orderID + " ändrad till: " + status);
+            }
+        } for (Order order : activeOrderList) {
+            if (order.getOrderID() == orderID) {
+                order.setStatus(status);
+                if (status == Status.READY) {
+                    System.out.println("Beställning " + orderID + " är nu redo att hämtas.");
+                    updateKitchenGUI();
+                } if (status == Status.DELIVERED) {
+                    System.out.println("Beställning " + orderID + " är nu levererad.");
+                    finishedOrderList.remove(order);
+                    activeOrderList.remove(order);
+                }
+            }
+        }
     }
 
-    public void changeOrderStatus(int id, Status status) {
-
-    }
-
-    public void updateKitchenGUI(ArrayList<Order> activeOrderList) {
+    public void updateKitchenGUI() {
 
     }
 }
