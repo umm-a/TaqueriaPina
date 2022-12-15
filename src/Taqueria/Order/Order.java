@@ -1,6 +1,7 @@
 package Taqueria.Order;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +10,11 @@ import Taqueria.TacoInterface.*;
 
 public class Order {
 
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     private List<Taco> tacoList = new ArrayList<>();
-    private double totalPrice;
+    private double totalPriceOrder;
+    private double totalDishPrice;
     private String customerName;
     private String customerPhone;
     private Status status;
@@ -29,7 +33,7 @@ public class Order {
     public Order(int orderID, List<Taco> tacoList, double totalPrice, String customerName, String customerPhone, Status status) {
         this.orderID = orderID;
         this.tacoList = tacoList;
-        this.totalPrice = totalPrice;
+        this.totalPriceOrder = totalPrice;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.status = status;
@@ -48,8 +52,8 @@ public class Order {
         return list;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public double getTotalPriceOrder() {
+        return totalPriceOrder;
     }
 
     public void setTotalPriceOrder(double dishPrice) {
@@ -99,6 +103,7 @@ public class Order {
 
     public void addTaco(Taco taco) {
         tacoList.add(taco);
+//        totalPriceOrder += taco.getPrice();
     }
     public List<Taco> getTacoList () {
         return tacoList;

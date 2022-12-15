@@ -5,7 +5,7 @@ public class TacoShell implements Taco {
     @Override
     public String getDescription() {
         String description = "Hårt skal";
-        return description + " (" + price + ")";
+        return description + " (" + price + " kr)";
     }
     @Override
     public double getPrice() {

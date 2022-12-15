@@ -11,12 +11,15 @@ import Taqueria.Topping.ToppingMeat;
 import Taqueria.Topping.ToppingPineapple;
 import Taqueria.Topping.ToppingSauce;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class TacoOrderSystem {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     KitchenGUI kitchenGUI = new KitchenGUI();
 
     ArrayList<Order> orderListORDERED = new ArrayList<>();
@@ -154,7 +157,6 @@ public class TacoOrderSystem {
     }
 
     public void addTacoToOrder(Taco taco, Order order) {
-
         order.addTaco(taco);
         order.setTotalPriceOrder(taco.getPrice());
         System.out.println("DEBUG order.getTotalPriceOrder() " + order.getTotalPriceOrder());
@@ -165,7 +167,7 @@ public class TacoOrderSystem {
     public void searchOrder() { //är metodnamnet passande?
         String searchString = null;
         StringBuilder orderInfo = new StringBuilder();
-        System.out.println("Sök efter kundinformation, status eller ordernummer: ");
+        System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer(inled med #): ");
         Scanner scan = new Scanner(System.in);
         if (scan.hasNextLine()) {
             searchString = scan.nextLine();
