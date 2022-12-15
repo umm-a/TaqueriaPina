@@ -122,11 +122,11 @@ public class TacoOrderSystem {
         kitchenGUI.orderText.setText("");
         for (Order o: activeOrderList){
             List<Taco> tempList = o.getTacoList();
-          for (Taco t: tempList){
-              kitchenGUI.orderText.append("\n\n" + t.getDescription());
-              kitchenGUI.repaint();
-              kitchenGUI.revalidate();
-           }
+            for (Taco t: tempList){
+                kitchenGUI.orderText.append("\n\n" + t.getDescription());
+                kitchenGUI.repaint();
+                kitchenGUI.revalidate();
+            }
         }
     }
 }
