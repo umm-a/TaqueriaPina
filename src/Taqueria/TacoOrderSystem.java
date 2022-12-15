@@ -28,7 +28,6 @@ public class TacoOrderSystem {
     public TacoOrderSystem() {
 
         String scannerInput;
-        KitchenGUI kitchenGUI = new KitchenGUI();
         while (run) {
             Scanner scan = new Scanner(System.in);
             System.out.println("Välj ett val med 1, 2, eller 3: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning \n4. Avsluta");
@@ -220,12 +219,11 @@ public class TacoOrderSystem {
                 order.setStatus(status);
                 if (status == Status.READY) {
                     System.out.println("Beställning " + orderID + " är nu redo att hämtas.");
+                    activeOrderList.remove(order);
                     updateKitchenGUI();
                 } if (status == Status.DELIVERED) {
                     System.out.println("Beställning " + orderID + " är nu levererad.");
                     finishedOrderList.remove(order);
-                    activeOrderList.remove(order);
-                    updateKitchenGUI();
                 }
             }
         }

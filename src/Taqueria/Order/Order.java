@@ -43,7 +43,7 @@ public class Order {
     public String[] printTacoList() {
         String[] list = new String[tacoList.size()];
         for (Taco taco : tacoList) {
-            list[tacoList.indexOf(taco)] = taco.toString();
+            list[tacoList.indexOf(taco)] = taco.getDescription();
         }
         return list;
     }
