@@ -16,10 +16,10 @@ public class KitchenGUI extends JFrame{
         Font font = new Font("times new roman", Font.PLAIN,25);
 
         KitchenGUI(){
-            displayActiveOrderList();
+            displayorderListORDERED();
         }
 
-        public void displayActiveOrderList(){
+        public void displayorderListORDERED(){
             setTitle("\uD83C\uDF43 Taqueria Piña \uD83C\uDF43");
             panel.setLayout(new BorderLayout());
             panel.add(tacoTitleLabel, BorderLayout.NORTH);

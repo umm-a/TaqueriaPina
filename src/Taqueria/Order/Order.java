@@ -52,8 +52,8 @@ public class Order {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotalPriceOrder(double dishPrice) {
+        totalPriceOrder += dishPrice;
     }
 
     public String getCustomerName() {
@@ -110,8 +110,8 @@ public class Order {
                 "Kundens namn: " + getCustomerName() + "\n" +
                 "Kundens telefon: " + getCustomerPhone() + "\n" +
                 "Antal artiklar i beställningen: " + tacoList.size() + "\n" +
-                "Beställning: " + Arrays.toString(printTacoList()) + "\n" + // TODO: Fixa så att artiklarna skrivs ut en och en, kanske ej array
-                "Totalpris: " + getTotalPrice() + "\n" +
+                "Beställning: " + Arrays.toString(printTacoList()) + "\n" +
+                "Totalpris: " + df.format(getTotalPriceOrder()) + " kr \n" +
                 "Status: " + getStatus() + "\n";
     }
 }

@@ -1,7 +1,7 @@
 package Taqueria.TacoInterface;
 
 public class TacoShell implements Taco {
-    private final double price = 98.00;
+    private final double price = 89.00;
     @Override
     public String getDescription() {
         String description = "Hårt skal";

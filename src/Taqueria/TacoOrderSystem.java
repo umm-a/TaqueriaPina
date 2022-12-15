@@ -19,8 +19,9 @@ import java.util.Scanner;
 public class TacoOrderSystem {
     KitchenGUI kitchenGUI = new KitchenGUI();
 
-    ArrayList<Order> activeOrderList = new ArrayList<>();
-    ArrayList<Order> finishedOrderList = new ArrayList<>();
+    ArrayList<Order> orderListORDERED = new ArrayList<>();
+    ArrayList<Order> orderListREADY = new ArrayList<>();
+    ArrayList<Order> orderListDELIVERED = new ArrayList<>();
     boolean run = true;
     int systemOrderID = Order.getOrderIDFromFile();
 
@@ -105,7 +106,7 @@ public class TacoOrderSystem {
                     if (order.getTacoList().size() > 0) {
                         order.setOrderID(systemOrderID);
                         order.setStatus(Status.ORDERED);
-                        activeOrderList.add(order);
+                        orderListORDERED.add(order);
                         System.out.println("Beställning skapad. \n" + order);
                         updateKitchenGUI();
 
@@ -155,7 +156,10 @@ public class TacoOrderSystem {
     public void addTacoToOrder(Taco taco, Order order) {
 
         order.addTaco(taco);
-        System.out.println("Tillagd i order: " + taco.getDescription());
+        order.setTotalPriceOrder(taco.getPrice());
+        System.out.println("DEBUG order.getTotalPriceOrder() " + order.getTotalPriceOrder());
+        System.out.println("DEBUG taco.getPrice() " + taco.getPrice());
+        System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr");
     }
 
     public void searchOrder() { //är metodnamnet passande?
@@ -165,14 +169,21 @@ public class TacoOrderSystem {
         Scanner scan = new Scanner(System.in);
         if (scan.hasNextLine()) {
             searchString = scan.nextLine();
-            for (Order order : activeOrderList) {
+            for (Order order : orderListORDERED) {
                 assert searchString != null;
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
                         searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
-            for (Order order : finishedOrderList) {
+            for (Order order : orderListREADY) {
+                assert searchString != null;
+                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
+                    orderInfo.append(order);
+                }
+            }
+            for (Order order : orderListDELIVERED) {
                 assert searchString != null;
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
                         searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
@@ -203,35 +214,52 @@ public class TacoOrderSystem {
                 } else {
                     System.out.println("Felaktig inmatning av ordernummer, försök igen");
                 }
-            } else if (status == null) {
+            } else {
                 System.out.println("Ange status: 1. BESTÄLLD, 2. REDO, 3. LEVERERAD");
+                Order order = null;
                 scannerInput = scan.nextLine();
                 switch (scannerInput) {
-                    case "1" -> status = Status.ORDERED;
-                    case "2" -> status = Status.READY;
-                    case "3" -> status = Status.DELIVERED;
+                    case "1" -> {
+                        status = Status.ORDERED;
+                    }
+                    case "2" -> {
+                        status = Status.READY;
+                        order = getOrderFromList(orderListORDERED, orderID);
+                        assert order != null;
+                        order.setStatus(status);
+                        System.out.println("Beställning #" + orderID + " är nu redo att hämtas.");
+                        orderListREADY.add(order);
+                        orderListORDERED.remove(order);
+                        updateKitchenGUI();
+                    }
+                    case "3" -> {
+                        status = Status.DELIVERED;
+                        order = getOrderFromList(orderListREADY, orderID);
+                        assert order != null;
+                        order.setStatus(status);
+                        System.out.println("Beställning #" + orderID + " är nu levererad.");
+                        orderListDELIVERED.add(order);
+                        orderListREADY.remove(order);
+                    }
                     default -> System.out.println("Felaktig inmatning av status, försök igen");
                 }
                 System.out.println("Status på order #" + orderID + " ändrad till: " + status);
             }
-        } for (Order order : activeOrderList) {
+        }
+    }
+
+    private Order getOrderFromList(ArrayList<Order> orderList, int orderID) {
+        for (Order order : orderList) {
             if (order.getOrderID() == orderID) {
-                order.setStatus(status);
-                if (status == Status.READY) {
-                    System.out.println("Beställning " + orderID + " är nu redo att hämtas.");
-                    activeOrderList.remove(order);
-                    updateKitchenGUI();
-                } if (status == Status.DELIVERED) {
-                    System.out.println("Beställning " + orderID + " är nu levererad.");
-                    finishedOrderList.remove(order);
-                }
+                return order;
             }
         }
+        return null;
     }
 
     public void updateKitchenGUI() {
         kitchenGUI.orderText.setText("");
-        for (Order o : activeOrderList) {
+        for (Order o : orderListORDERED) {
             List<Taco> tempList = o.getTacoList();
             for (Taco t : tempList) {
                 kitchenGUI.orderText.append("\n\n" + t.getDescription());
