@@ -1,9 +1,14 @@
 package Taqueria;
 
+import Taqueria.Order.Order;
+import Taqueria.TacoInterface.Taco;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class KitchenGUI extends JFrame{
+        Order order = new Order();
         JLabel tacoTitleLabel = new JLabel("\uD83C\uDF43 Taqueria Piña's beställningar \uD83C\uDF43");
         JPanel panel = new JPanel();
         TextArea orderText = new TextArea();
@@ -26,18 +31,6 @@ public class KitchenGUI extends JFrame{
             setLocationRelativeTo(null);
             setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-            orderText.append("testing testing\n");
-            orderText.append("testing2 testing2\n");
             //scrollpane på botten...?
-
-     /*   for (Order o: activeOrderList) {
-     ->ta fram tacolist för vardera beställning
-        ArrayList<Taco> tempList = o.getTacoList();
-            for (Taco p: tempList){ todo något sådant
-            -> taco get description
-            -> Skriv ut dessa Strings i rutan
-            orderText.append(p.getDescription);
-            }
-        }*/
         }
 }
