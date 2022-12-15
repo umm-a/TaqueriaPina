@@ -38,28 +38,9 @@ public class TacoOrderSystem {
             }
         }
     }
-/*
-        public void createOrder(){
-        boolean addingOrders=true;
-        Order currentOrder = new Order();
-        startOrder(currentOrder);
-     //   currentOrder.tacoList.add(startOrder());
-        Scanner scan = new Scanner(System.in);
-        String scannerInput = scan.nextLine();
-        while (addingOrders) {
-            System.out.println("Vill du lägga till fler tacos i beställningen? 1=Ja, Annat=Nej");
-            if (scannerInput.equals("1")) {
-                startOrder(currentOrder);
-              //  currentOrder.tacoList.add(startOrder());
-            } else {
-                addingOrders = false;
-            }
-        }
-        activeOrderList.add(currentOrder);
-        }
-        */
 
-    public void startOrder() { //ta in Order som argument ev.
+
+    public void startOrder() {
         boolean create = true;
         String scannerInput;
         Scanner scan = new Scanner(System.in);
@@ -76,15 +57,12 @@ public class TacoOrderSystem {
                     addToppingsToTaco(new Tortilla(), order);
                 }
 
-                //       return taco; todo -> man kan göra på olika vis, tänkte lägga ihop med Order men blev problematiskt - låt oss kika tillsammans
                 case "2" -> {
                     addToppingsToTaco(new Salad(), order);
-                    //       return taco2;
                 }
 
                 case "3" -> {
                     addToppingsToTaco(new TacoShell(), order);
-                    //       return taco3;
                 }
 
                 case "4" -> {
@@ -97,7 +75,7 @@ public class TacoOrderSystem {
         }
     }
 
-    public void addToppingsToTaco(Taco taco, Order order) { //ta ev. in Order som argument
+    public void addToppingsToTaco(Taco taco, Order order) {
         boolean addToppings = true;
         String scannerInput;
         while (addToppings) {
@@ -111,15 +89,10 @@ public class TacoOrderSystem {
                 case "4" -> taco = new ToppingSauce(taco);
                 case "5" -> {
                     addTacoToOrder(taco, order);
-
-                    //spara denna taco i lista för specifik order
                     addToppings = false;
                 }
-                //   default:
-                //     System.out.println("Inget val, försök igen");
             }
         }
-        //   return taco;
     }
 
     public void addTacoToOrder(Taco taco, Order order) {
