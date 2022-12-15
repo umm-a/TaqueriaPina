@@ -15,6 +15,7 @@ public class Order {
     public String customerPhone;
     public Status status;
 
+
     public int getOrderID() {
         int tempOrderID;
         try (BufferedReader readOrderID = new BufferedReader(new FileReader("resources/orderID.txt"))){
@@ -40,6 +41,9 @@ public class Order {
 
     public void addTaco(Taco taco) {
         tacoList.add(taco);
+    }
+    public List<Taco> getTacoList () {
+        return tacoList;
     }
 
 }

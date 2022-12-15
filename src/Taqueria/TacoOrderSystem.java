@@ -12,9 +12,12 @@ import Taqueria.Topping.ToppingPineapple;
 import Taqueria.Topping.ToppingSauce;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class TacoOrderSystem {
+    KitchenGUI kitchenGUI = new KitchenGUI();
 
     ArrayList<Order> activeOrderList = new ArrayList<>();
     ArrayList<Order> finishedOrderList = new ArrayList<>();
@@ -25,7 +28,6 @@ public class TacoOrderSystem {
     public TacoOrderSystem() {
 
         String scannerInput;
-        KitchenGUI kitchenGUI = new KitchenGUI();
         while (run) {
             Scanner scan = new Scanner(System.in);
             System.out.println("Välj ett val med 1, 2, eller 3: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning ");
@@ -69,6 +71,7 @@ public class TacoOrderSystem {
                     activeOrderList.add(order);
                     System.out.println("Order sparad");
                     create = false;
+                    updateKitchenGUI(activeOrderList);
                 }
 
             }
@@ -116,6 +119,14 @@ public class TacoOrderSystem {
     }
 
     public void updateKitchenGUI(ArrayList<Order> activeOrderList) {
-
+        kitchenGUI.orderText.setText("");
+        for (Order o: activeOrderList){
+            List<Taco> tempList = o.getTacoList();
+          for (Taco t: tempList){
+              kitchenGUI.orderText.append("\n\n" + t.getDescription());
+              kitchenGUI.repaint();
+              kitchenGUI.revalidate();
+           }
+        }
     }
 }
