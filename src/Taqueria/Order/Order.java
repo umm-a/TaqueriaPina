@@ -37,10 +37,6 @@ public class Order {
     public Order() {
     }
 
-    public List<Taco> getTacoList() {
-        return tacoList;
-    }
-
     public void setTacoList(List<Taco> tacoList) {
         this.tacoList = tacoList;
     }

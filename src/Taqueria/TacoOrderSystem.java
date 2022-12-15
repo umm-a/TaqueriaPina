@@ -118,7 +118,6 @@ public class TacoOrderSystem {
                                 "Beställningen har inte skapats.");
                     }
                     create = false;
-                    updateKitchenGUI(activeOrderList);
                 }
 
                 case "5" -> {
@@ -226,12 +225,13 @@ public class TacoOrderSystem {
                     System.out.println("Beställning " + orderID + " är nu levererad.");
                     finishedOrderList.remove(order);
                     activeOrderList.remove(order);
+                    updateKitchenGUI();
                 }
             }
         }
     }
 
-    public void updateKitchenGUI(ArrayList<Order> activeOrderList) {
+    public void updateKitchenGUI() {
         kitchenGUI.orderText.setText("");
         for (Order o : activeOrderList) {
             List<Taco> tempList = o.getTacoList();
