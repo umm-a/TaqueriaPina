@@ -120,9 +120,9 @@ public class TacoOrderSystem {
 
     public void updateKitchenGUI(ArrayList<Order> activeOrderList) {
         kitchenGUI.orderText.setText("");
-        for (Order o: activeOrderList){
+        for (Order o : activeOrderList) {
             List<Taco> tempList = o.getTacoList();
-            for (Taco t: tempList){
+            for (Taco t : tempList) {
                 kitchenGUI.orderText.append("\n\n" + t.getDescription());
                 kitchenGUI.repaint();
                 kitchenGUI.revalidate();
