@@ -80,7 +80,7 @@ public class TacoOrderSystem {
         String scannerInput;
         while (addToppings) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Välj toppings!\n1.Ost, 2.Köttfärs, 3.Ananas, 4.Sås\n (Om du är nöjd, skriv \"5\")");
+            System.out.println("Välj en topping i taget!\n1.Ost, 2.Köttfärs, 3.Ananas, 4.Sås\n (Om du är nöjd, skriv \"5\")");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
                 case "1" -> taco = new ToppingCheese(taco);
