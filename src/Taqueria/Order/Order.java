@@ -14,7 +14,6 @@ public class Order {
 
     private List<Taco> tacoList = new ArrayList<>();
     private double totalPriceOrder;
-    private double totalDishPrice;
     private String customerName;
     private String customerPhone;
     private Status status;

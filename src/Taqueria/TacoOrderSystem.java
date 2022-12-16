@@ -159,8 +159,6 @@ public class TacoOrderSystem {
     public void addTacoToOrder(Taco taco, Order order) {
         order.addTaco(taco);
         order.setTotalPriceOrder(taco.getPrice());
-        System.out.println("DEBUG order.getTotalPriceOrder() " + order.getTotalPriceOrder());
-        System.out.println("DEBUG taco.getPrice() " + taco.getPrice());
         System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr");
     }
 
