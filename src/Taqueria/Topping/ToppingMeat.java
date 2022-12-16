@@ -6,7 +6,7 @@ import Taqueria.TacoInterface.Taco;
 public class ToppingMeat extends TacoDecorator {
     private final Taco taco;
     private String name = "Kött";
-    private Double price = 20.0;
+    private Double price = 10.0;
 
     public ToppingMeat(Taco taco) {
         this.taco = taco;
@@ -14,15 +14,19 @@ public class ToppingMeat extends TacoDecorator {
 
     @Override
     public String getName() {
-        return name;
+        return taco.getName() + name;
     }
 
     public String getDescription(){
-        return " + " + name + " (" + price + " kr)";
+        return taco.getDescription() + " + " + name + " (" + price + " kr)" ;
+    }
+    @Override
+    public String getDescriptionWithoutPrice() {
+        return taco.getDescriptionWithoutPrice() + " + " + name;
     }
 
     public double getPrice(){
-        return price;
+        return taco.getPrice() + price;
     }
     @Override
     public double squishyFactor() {

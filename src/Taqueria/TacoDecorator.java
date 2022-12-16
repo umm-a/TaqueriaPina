@@ -7,7 +7,9 @@ public abstract class TacoDecorator implements Taco {
     public String getDescription(){
         return ""; //Kommer aldrig att användas
     }
-
+    public String getDescriptionWithoutPrice(){
+        return ""; //Kommer aldrig att användas
+    }
     public double getPrice(){
         return 0.0; //Kommer aldrig att användas
     }

@@ -6,6 +6,5 @@ public interface Taco {
     double getPrice();
     double squishyFactor();
     int getNapkins();
-
-
+    String getDescriptionWithoutPrice();
 }

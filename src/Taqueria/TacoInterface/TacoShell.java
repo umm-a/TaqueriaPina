@@ -13,6 +13,10 @@ public class TacoShell implements Taco {
         return name + " (" + price + " kr)";
     }
     @Override
+    public String getDescriptionWithoutPrice() {
+        return name;
+    }
+    @Override
     public double getPrice() {
         return price;
     }

@@ -13,15 +13,19 @@ public class ToppingCheese extends TacoDecorator {
     }
     @Override
     public String getName() {
-        return name;
+        return taco.getName() + name;
     }
 
     public String getDescription(){
-        return " + " + name + " (" + price + " kr)";
+        return taco.getDescription() + " + " + name + " (" + price + " kr)" ;
+    }
+    @Override
+    public String getDescriptionWithoutPrice() {
+        return taco.getDescriptionWithoutPrice() + " + " + name;
     }
 
     public double getPrice(){
-        return price;
+        return taco.getPrice() + price;
     }
     @Override
     public double squishyFactor() {

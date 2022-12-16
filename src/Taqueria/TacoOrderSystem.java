@@ -161,66 +161,108 @@ public class TacoOrderSystem {
         System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr"
         + "\nAntal servetter till kund baserat på kladdighet: " + taco.getNapkins());
     }
-
-    public void searchOrder() {
-        String searchString = null;
-        StringBuilder orderInfo = new StringBuilder();
-        System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer: ");
-        Scanner scan = new Scanner(System.in);
-        int searchResultCounter = 0;
-        if (scan.hasNextLine()) {
-            searchString = scan.nextLine();
-            if (orderListORDERED.size() > 0) {
-                for (Order order : orderListORDERED) {
-                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
-                            order.getCustomerPhone().equals(searchString) ||
-                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
-                            String.valueOf(order.getOrderID()).equals(searchString)) {
-                        orderInfo.append(order);
-                        searchResultCounter++;
-                    }
-                }
-            }
-            else if (orderListREADY.size() > 0) {
-                for (Order order : orderListREADY) {
-                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
-                            order.getCustomerPhone().equals(searchString) ||
-                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
-                            String.valueOf(order.getOrderID()).equals(searchString)) {
-                        orderInfo.append(order);
-                        searchResultCounter++;
-                    }
-                }
-            }
-            else if (orderListDELIVERED.size() > 0) {
-                for (Order order : orderListDELIVERED) {
-                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
-                            order.getCustomerPhone().equals(searchString) ||
-                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
-                            String.valueOf(order.getOrderID()).equals(searchString)) {
-                        orderInfo.append(order);
-                        searchResultCounter++;
-                    }
-                }
-            }
-        }
-        if (orderInfo.length() == 0) {
-            System.out.println("Sökresultat:\n" +
-                    "Hittade ingen order med sökordet: \"" + searchString + "\".\n");
-        } else {
-            System.out.println("--- Sökresultat: ---\n" +
-                    "Hittade: " + searchResultCounter + " ordrar med sökordet: \"" + searchString + "\".\n\n" +
-                    orderInfo);
-            System.out.println("--- Slut på sökresultat ---\n");
-        }
+    // Metod för att lägga alla beställningar i olika listor till en och samma för enklare sökning.
+    public ArrayList<Order> allOrders() {
+        ArrayList<Order> allOrders = new ArrayList<>();
+        allOrders.addAll(orderListORDERED);
+        allOrders.addAll(orderListREADY);
+        allOrders.addAll(orderListDELIVERED);
+        return allOrders;
     }
 
-    public boolean searchForOrderNumberInOrderList(String searchString, List<Order> orderList) {
-        if (orderList.size() > 0) {
-            for (Order order : orderList) {
-                return String.valueOf(order.getOrderID()).equals(searchString);
+    public void searchOrder() {
+        // ny lista med alla beställningar utifrån de tre listorna
+        ArrayList<Order> allOrders = allOrders();
+
+        String searchString;
+        // switch för att välja vilken parameter att söka efter
+        System.out.println("""
+                [SÖKMENY]
+                Välj vilken parameter du vill söka efter:
+                1. Kundens namn
+                2. Kundens telefonnummer
+                3. Beställningsnummer
+                4. Status
+                5. Avbryt sökning""");
+        Scanner scan = new Scanner(System.in);
+        String scannerInput = scan.nextLine();
+        StringBuilder searchResult = new StringBuilder();
+        switch (scannerInput) {
+            case "1" -> {
+                System.out.println("Ange kundens namn: ");
+                searchString = scan.nextLine().trim();
+                if (searchString.length() > 0) {
+                    for (Order order : allOrders) {
+                        if (order.getCustomerName().equalsIgnoreCase(searchString)) {
+                            searchResult.append(order);
+                        } else {
+                            System.out.println("Hittade ingen beställning med det namnet.\n");
+                            break;
+                        }
+                        System.out.println("--- Slut på sökresultat ---\n");
+                    }
+                } else {
+                    System.out.println("Felaktig inmatning av namn. Fältet får inte vara tomt. Försök igen.\n");
+                }
             }
-        } return false;
+            case "2" -> {
+                System.out.println("Ange kundens telefonnummer: ");
+                searchString = scan.nextLine().trim();
+                if (searchString.matches("[0-9]+")) {
+                    for (Order order : allOrders) {
+                        if (order.getCustomerPhone().equalsIgnoreCase(searchString)) {
+                            searchResult.append(order).append("\n");
+                        } else {
+                            System.out.println("Hittade ingen beställning med det telefonnumret.\n");
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.println("Felaktig inmatning av telefonnummer. Endast siffror är tillåtna. Försök igen.\n");
+                }
+            }
+            case "3" -> {
+                System.out.println("Ange beställningsnummer: ");
+                if (scan.hasNextInt()) {
+                    searchString = String.valueOf(scan.nextInt());
+                    for (Order order : allOrders) {
+                        if (String.valueOf(order.getOrderID()).equals(searchString)) {
+                            searchResult.append(order).append("\n");
+                        } else {
+                            System.out.println("Hittade ingen beställning med det numret.\n");
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.println("Felaktig inmatning av beställningsnummer. Endast siffror är tillåtna. Försök igen.\n");
+                }
+            }
+            case "4" -> {
+                System.out.println("Ange status (Beställd/Redo/Levererad): ");
+                searchString = scan.nextLine().trim();
+                if (searchString.equalsIgnoreCase("Beställd") || searchString.equalsIgnoreCase("Redo") || searchString.equalsIgnoreCase("Levererad")) {
+                    for (Order order : allOrders) {
+                        if (order.getStatus().toString().equalsIgnoreCase(searchString)) {
+                            searchResult.append(order).append("\n");
+                        } else {
+                            System.out.println("Hittade ingen beställning med den statusen.\n");
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.println("Felaktig inmatning av status. Försök igen.\n");
+                }
+            }
+            case "5" -> {
+                System.out.println("Sökningen avbruten.\n");
+            }
+        }
+        if (searchResult.length() > 0) {
+            System.out.println("--- Sökresultat ---\n" +
+                    searchResult +
+                    "--- Slut på sökresultat ---\n");
+//            searchResult.setLength(0);
+        }
     }
 
     public Order searchForOrderNumberInOrderList(List<Order> orderList, int orderID) {
@@ -355,7 +397,7 @@ public class TacoOrderSystem {
         for (Order o : orderListORDERED) {
             List<Taco> tempList = o.getTacoList();
             for (Taco t : tempList) {
-                kitchenGUI.orderText.append(o.getOrderID() + ": " + t.getDescription() + "\n");
+                kitchenGUI.orderText.append(o.getOrderID() + ": " + t.getDescriptionWithoutPrice() + "\n");
                 kitchenGUI.repaint();
                 kitchenGUI.revalidate();
             }
