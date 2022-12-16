@@ -24,4 +24,13 @@ public class ToppingMeat extends TacoDecorator {
     public double getPrice(){
         return taco.getPrice() + price;
     }
+    @Override
+    public double squishyFactor() {
+        return taco.squishyFactor() + 1;
+    }
+
+    @Override
+    public int getNapkins() {
+        return (int) (squishyFactor() / 2);
+    }
 }

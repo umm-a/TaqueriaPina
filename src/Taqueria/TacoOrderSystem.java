@@ -159,10 +159,11 @@ public class TacoOrderSystem {
     public void addTacoToOrder(Taco taco, Order order) {
         order.addTaco(taco);
         order.setTotalPriceOrder(taco.getPrice());
-        System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr");
+        System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr"
+        + "\nAntal servetter till kund baserat på kladdighet: " + taco.getNapkins());
     }
 
-    public void searchOrder() { //är metodnamnet passande?
+    public void searchOrder() {
         String searchString = null;
         StringBuilder orderInfo = new StringBuilder();
         System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer(inled med #): ");
