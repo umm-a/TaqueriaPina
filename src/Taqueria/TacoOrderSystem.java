@@ -13,7 +13,6 @@ import Taqueria.Topping.ToppingSauce;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,7 +33,7 @@ public class TacoOrderSystem {
         String scannerInput;
         while (run) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Välj ett val med 1, 2, 3 eller 4: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning \n4. Avsluta");
+            System.out.println("[HUVUDMENY]\nVälj ett av följande alternativ: \n1. Skapa beställning \n2. Sök beställning \n3. Ändra status på beställning \n4. Avsluta");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
                 case "1" -> startOrder();
@@ -74,7 +73,7 @@ public class TacoOrderSystem {
                 if (scannerInput.length() > 0) {
                     order.setCustomerName(scannerInput);
                 } else {
-                    System.out.println("Felaktig inmatning av namn, försök igen");
+                    System.out.println("Felaktig inmatning av namn. Fältet får inte vara tomt. Försök igen.\n");
                 }
             } else if (order.getCustomerPhone() == null) {
                 System.out.println("Ange kundens telefonnummer: ");
@@ -82,14 +81,14 @@ public class TacoOrderSystem {
                 if (scannerInput.matches("[0-9]+")) {
                     order.setCustomerPhone(scannerInput);
                 } else {
-                    System.out.println("Felaktig inmatning av telefonnummer, försök igen");
+                    System.out.println("Felaktig inmatning av telefonnummer. Endast siffor är tillåtna. Försök igen\n");
                 }
             }
         }
 
         while (create) {
 
-            System.out.println("Välj bas: 1. Tortilla, 2. Sallad, 3. Taco Shell.\n4. För att skicka beställning. 5. Avbryt beställning.");
+            System.out.println("Välj bas: 1. Tortilla, 2. Sallad, 3. Taco Shell.\n4. Skicka beställning. 5. Avbryt beställning.");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
 
@@ -110,16 +109,16 @@ public class TacoOrderSystem {
                         order.setOrderID(systemOrderID);
                         order.setStatus(Status.ORDERED);
                         orderListORDERED.add(order);
-                        System.out.println("Beställning skapad. \n" + order);
+                        System.out.println("Beställning skapad: \n" + order);
                         updateKitchenGUI();
                         Order.writeOrderToFile(order);
-                        // räklnar upp och uppdaterar filen med orderID om beställningen lyckades
+                        // Räknar upp och uppdaterar filen med orderID om beställningen lyckades
                         systemOrderID++;
                         if (systemOrderID > 999) systemOrderID = 1;
                         Order.writeOrderIDToFile(systemOrderID);
                     } else {
                         System.out.println("Du måste lägga till minst en bas för att skapa en beställning\n" +
-                                "Beställningen har inte skapats.");
+                                "Beställningen har inte skapats.\n");
                     }
                     create = false;
                 }
@@ -127,10 +126,10 @@ public class TacoOrderSystem {
                 case "5" -> {
                     System.out.println("Vill du avbryta beställningen? (J/N)");
                     if (scan.nextLine().equalsIgnoreCase("J")) {
-                        System.out.println("Beställningen har avbrutits");
+                        System.out.println("Beställningen har avbrutits\n");
                         create = false;
                     } else {
-                        System.out.println("Du kan fortsätta med beställningen");
+                        System.out.println("Du kan fortsätta med beställningen.");
                     }
                 }
             }
@@ -142,7 +141,7 @@ public class TacoOrderSystem {
         String scannerInput;
         while (addToppings) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Välj toppings!\n1.Ost, 2.Köttfärs, 3.Ananas, 4.Sås\n (Om du är nöjd, skriv \"5\")");
+            System.out.println("[TOPPINGMENY] Välj topping:\n1.Ost, 2.Köttfärs, 3.Ananas, 4.Sås\n(Om du är nöjd, skriv \"5\")");
             scannerInput = scan.nextLine();
             switch (scannerInput) {
                 case "1" -> taco = new ToppingCheese(taco);
@@ -160,7 +159,7 @@ public class TacoOrderSystem {
     public void addTacoToOrder(Taco taco, Order order) {
         order.addTaco(taco);
         order.setTotalPriceOrder(taco.getPrice());
-        System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr");
+        System.out.println("Tillagd i order: " + taco.getDescription() + ". Pris: " + df.format(taco.getPrice()) + " kr.\n");
     }
 
     public void searchOrder() { //är metodnamnet passande?
@@ -168,84 +167,118 @@ public class TacoOrderSystem {
         StringBuilder orderInfo = new StringBuilder();
         System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer: ");
         Scanner scan = new Scanner(System.in);
+        int searchResultCounter = 0;
         if (scan.hasNextLine()) {
             searchString = scan.nextLine();
-            for (Order order : orderListORDERED) {
-                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
-                    orderInfo.append(order);
+            if (orderListORDERED.size() > 0) {
+                for (Order order : orderListORDERED) {
+                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
+                            order.getCustomerPhone().equals(searchString) ||
+                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
+                            String.valueOf(order.getOrderID()).equals(searchString)) {
+                        orderInfo.append(order);
+                        searchResultCounter++;
+                    }
                 }
             }
-            for (Order order : orderListREADY) {
-                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
-                    orderInfo.append(order);
+            else if (orderListREADY.size() > 0) {
+                for (Order order : orderListREADY) {
+                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
+                            order.getCustomerPhone().equals(searchString) ||
+                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
+                            String.valueOf(order.getOrderID()).equals(searchString)) {
+                        orderInfo.append(order);
+                        searchResultCounter++;
+                    }
                 }
             }
-            for (Order order : orderListDELIVERED) {
-                if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
-                    orderInfo.append(order);
+            else if (orderListDELIVERED.size() > 0) {
+                for (Order order : orderListDELIVERED) {
+                    if (order.getCustomerName().toLowerCase().contains(searchString.toLowerCase()) ||
+                            order.getCustomerPhone().equals(searchString) ||
+                            order.getStatus().toString().equalsIgnoreCase(searchString) ||
+                            String.valueOf(order.getOrderID()).equals(searchString)) {
+                        orderInfo.append(order);
+                        searchResultCounter++;
+                    }
                 }
+            } else {
+                System.out.println("Det finns inga beställningar att söka efter.");
             }
         }
         if (orderInfo.length() == 0) {
-            System.out.println("Ingen matchning hittades");
+            System.out.println("Sökresultat:\n" +
+                    "Hittade ingen order med sökningen: " + searchString + "\n");
         } else {
-            System.out.println("Matchande ordrar: \n" + orderInfo);
+            System.out.println("--- Sökresultat: ---\n" + orderInfo);
+            System.out.println("--- Slut på sökresultat ---\n");
         }
     }
 
-    public void changeOrderStatus() {
-        Scanner scan = new Scanner(System.in);
-        String scannerInput;
-        int orderID = 0;
-        Status status = null;
-        while (true) {
-            if (orderID != 0 && status != null) {
-                break;
-            } else if (orderID == 0) {
-                System.out.println("Ange ordernummer: ");
-                scannerInput = scan.nextLine();
-                if (scannerInput.matches("[0-9]+")) {
-                    orderID = Integer.parseInt(scannerInput);
+    public boolean searchForOrderNumberInOrderList(String searchString, List<Order> orderList) {
+        if (orderList.size() > 0) {
+            for (Order order : orderList) {
+                return String.valueOf(order.getOrderID()).equals(searchString);
+            }
+        } return false;
+    }
 
+    public void changeOrderStatus() {
+        String searchString;
+        System.out.println("Ange ordernummer för beställningen du vill ändra status på: ");
+        Scanner scan = new Scanner(System.in);
+        if (scan.hasNextLine()) {
+            searchString = scan.nextLine();
+            // Kontrollerar om ordern finns i någon av våra statuslistor.
+            // Man får ej valet att ändra till den status som den redan har.
+            // Men man kan ändra till en tidigare status om man vill.
+            if (searchForOrderNumberInOrderList(searchString, orderListORDERED)) {
+                System.out.println("Vill du ändra status på beställning #" + searchString +"? (J/N)");
+                if (scan.nextLine().equalsIgnoreCase("J")) {
+                    System.out.println("Välj ny status: 1.Redo, 2.Levererad");
+                    if (scan.nextLine().equalsIgnoreCase("1")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Redo.\n");
+                        updateKitchenGUI();
+                    } else if (scan.nextLine().equalsIgnoreCase("2")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Levererad.\n");
+                    } else {
+                        System.out.println("Ogiltig inmatning.\n");
+                    }
                 } else {
-                    System.out.println("Felaktig inmatning av ordernummer, försök igen");
+                    System.out.println("Statusen ändrades inte.\n");
+                }
+            } else if (searchForOrderNumberInOrderList(searchString, orderListREADY)) {
+                System.out.println("Vill du ändra status på beställning #" + searchString +"? (J/N)");
+                if (scan.nextLine().equalsIgnoreCase("J")) {
+                    System.out.println("Välj ny status: 1.Levererad, 2.Beställd.");
+                    if (scan.nextLine().equalsIgnoreCase("1")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Levererad.\n");
+                    } else if (scan.nextLine().equalsIgnoreCase("2")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Beställd.\n");
+                        updateKitchenGUI();
+                    } else {
+                        System.out.println("Ogiltig inmatning.\n");
+                    }
+                } else {
+                    System.out.println("Statusen ändrades inte.\n");
+                }
+            } else if (searchForOrderNumberInOrderList(searchString, orderListDELIVERED)) {
+                System.out.println("Beställning #" + searchString + " är markerad som Levererad. Vill du ändra statusen? (J/N)");
+                if (scan.nextLine().equalsIgnoreCase("J")) {
+                    System.out.println("Välj ny status: 1.Beställd, 2.Redo.");
+                    if (scan.nextLine().equalsIgnoreCase("1")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Beställd.\n");
+                        updateKitchenGUI();
+                    } else if (scan.nextLine().equalsIgnoreCase("2")) {
+                        System.out.println("Beställning #" + searchString + " har fått ny status: Redo.\n");
+                    } else {
+                        System.out.println("Ogiltig inmatning.\n");
+                    }
+                } else {
+                    System.out.println("Statusen ändrades inte.\n");
                 }
             } else {
-                System.out.println("Ange ny status: 1. REDO, 2. LEVERERAD");
-                Order order = null;
-                scannerInput = scan.nextLine();
-                switch (scannerInput) {
-                    case "1" -> {
-                        status = Status.READY;
-                        order = getOrderFromList(orderListORDERED, orderID);
-                        if (order == null) {
-                            System.out.println("Order " + orderID + " finns inte eller går inte att ändra till: " + status);
-                            break;
-                        }
-                        order.setStatus(status);
-                        System.out.println("Beställning #" + orderID + " är nu redo att hämtas.");
-                        orderListREADY.add(order);
-                        orderListORDERED.remove(order);
-                        updateKitchenGUI();
-                    }
-                    case "2" -> {
-                        status = Status.DELIVERED;
-                        order = getOrderFromList(orderListREADY, orderID);
-                        if (order == null) {
-                            System.out.println("Order " + orderID + " finns inte eller går inte att ändra till: " + status);
-                            break;
-                        }
-                        order.setStatus(status);
-                        System.out.println("Beställning #" + orderID + " är nu levererad.");
-                        orderListDELIVERED.add(order);
-                        orderListREADY.remove(order);
-                    }
-                    default -> System.out.println("Felaktig inmatning av status, försök igen");
-                }
-                //System.out.println("Status på order #" + orderID + " ändrad till: " + status);
+                System.out.println("Hittade ingen order med nummer #" + searchString + ".\n");
             }
         }
     }
@@ -264,7 +297,7 @@ public class TacoOrderSystem {
         for (Order o : orderListORDERED) {
             List<Taco> tempList = o.getTacoList();
             for (Taco t : tempList) {
-                kitchenGUI.orderText.append(o.getOrderID() + ": " + t.getName() + "\n");
+                kitchenGUI.orderText.append(o.getOrderID() + ": " + t.getDescription() + "\n");
                 kitchenGUI.repaint();
                 kitchenGUI.revalidate();
             }
