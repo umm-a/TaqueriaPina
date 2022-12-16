@@ -214,14 +214,11 @@ public class TacoOrderSystem {
                     System.out.println("Felaktig inmatning av ordernummer, försök igen");
                 }
             } else {
-                System.out.println("Ange status: 1. BESTÄLLD, 2. REDO, 3. LEVERERAD");
+                System.out.println("Ange ny status: 1. REDO, 2. LEVERERAD");
                 Order order = null;
                 scannerInput = scan.nextLine();
                 switch (scannerInput) {
                     case "1" -> {
-                        status = Status.ORDERED;
-                    }
-                    case "2" -> {
                         status = Status.READY;
                         order = getOrderFromList(orderListORDERED, orderID);
                         if (order == null) {
@@ -234,7 +231,7 @@ public class TacoOrderSystem {
                         orderListORDERED.remove(order);
                         updateKitchenGUI();
                     }
-                    case "3" -> {
+                    case "2" -> {
                         status = Status.DELIVERED;
                         order = getOrderFromList(orderListREADY, orderID);
                         if (order == null) {

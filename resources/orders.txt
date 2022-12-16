@@ -22,3 +22,11 @@ Beställning: [Tacosallad (79.0 kr) + Sås (10.0 kr) + Ost (10.0 kr)]
 Totalpris: 99,00 kr 
 Status: Beställd
 
+Order: #25
+Kundens namn: Thomas
+Kundens telefon: 1234567
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr)]
+Totalpris: 99,00 kr 
+Status: Beställd
+
