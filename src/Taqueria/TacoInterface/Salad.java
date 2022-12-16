@@ -1,11 +1,17 @@
 package Taqueria.TacoInterface;
 
 public class Salad implements Taco {
+
+    private final String name = "Tacosallad";
     private final double price = 79.00;
+
+    @Override
+    public String getName() {
+        return name;
+    }
     @Override
     public String getDescription() {
-        String description = "Tacosallad";
-        return description + " (" + price + " kr)";
+        return name + " (" + price + " kr)";
     }
     @Override
     public double getPrice() {
