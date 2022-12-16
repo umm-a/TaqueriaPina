@@ -5,14 +5,20 @@ import Taqueria.TacoInterface.Taco;
 
 public class ToppingMeat extends TacoDecorator {
     private final Taco taco;
-    private String description = " + Kött (20 kr)";
+    private String name = " + Kött";
     private Double price = 10.0;
 
     public ToppingMeat(Taco taco) {
         this.taco = taco;
     }
+
+    @Override
+    public String getName() {
+        return taco.getName() + name;
+    }
+
     public String getDescription(){
-        return taco.getDescription() + description;
+        return taco.getDescription() + name + " (" + price + " kr)" ;
     }
 
     public double getPrice(){
