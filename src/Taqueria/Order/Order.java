@@ -94,9 +94,6 @@ public class Order {
     }
     public static synchronized void writeOrderIDToFile(int number) {
         try (BufferedWriter writeOrderID = new BufferedWriter(new FileWriter("resources/orderID.txt"))){
-            if (number > 999) {
-                number = 1;
-            }
             writeOrderID.write(String.valueOf(number));
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -115,6 +115,7 @@ public class TacoOrderSystem {
 
                         // räklnar upp och uppdaterar filen med orderID om beställningen lyckades
                         systemOrderID++;
+                        if (systemOrderID > 999) systemOrderID = 1;
                         Order.writeOrderIDToFile(systemOrderID);
                     } else {
                         System.out.println("Du måste lägga till minst en bas för att skapa en beställning\n" +
