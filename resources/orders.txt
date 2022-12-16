@@ -30,3 +30,12 @@ Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr)]
 Totalpris: 99,00 kr 
 Status: Beställd
 
+Order: #26
+Kundens namn: MariaWasHere
+Kundens telefon: 0761000000
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr) + Sås (10.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 2
+Totalpris: 129,00 kr 
+Status: Beställd
+
