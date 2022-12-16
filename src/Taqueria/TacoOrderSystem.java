@@ -165,7 +165,7 @@ public class TacoOrderSystem {
     public void searchOrder() { //är metodnamnet passande?
         String searchString = null;
         StringBuilder orderInfo = new StringBuilder();
-        System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer(inled med #): ");
+        System.out.println("Sök efter kundinformation(Namn/Telefon), status(Beställd/Redo/Levererad), eller ordernummer: ");
         Scanner scan = new Scanner(System.in);
         if (scan.hasNextLine()) {
             searchString = scan.nextLine();
