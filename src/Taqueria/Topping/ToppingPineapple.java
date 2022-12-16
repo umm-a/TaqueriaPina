@@ -5,8 +5,8 @@ import Taqueria.TacoInterface.Taco;
 
 public class ToppingPineapple extends TacoDecorator {
     private final Taco taco;
-    private String name;
-    private Double price;
+    private String name = "Ananas";
+    private Double price = 10.0;
 
     public ToppingPineapple(Taco taco) {
         this.taco = taco;
@@ -14,15 +14,15 @@ public class ToppingPineapple extends TacoDecorator {
 
     @Override
     public String getName() {
-        return taco.getName() + name;
+        return name;
     }
 
     public String getDescription(){
-        return taco.getDescription() + " + Ananas (10 kr)";
+        return " + " + name + " (" + price + " kr)";
     }
 
     public double getPrice(){
-        return taco.getPrice() + 10;
+        return price;
     }
 
     @Override
