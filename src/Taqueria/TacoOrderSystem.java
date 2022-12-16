@@ -172,21 +172,18 @@ public class TacoOrderSystem {
         if (scan.hasNextLine()) {
             searchString = scan.nextLine();
             for (Order order : orderListORDERED) {
-                assert searchString != null;
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
                         searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
                     orderInfo.append(order);
                 }
             }
             for (Order order : orderListREADY) {
-                assert searchString != null;
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
                         searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
                     orderInfo.append(order);
                 }
             }
             for (Order order : orderListDELIVERED) {
-                assert searchString != null;
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
                         searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
                     orderInfo.append(order);
