@@ -171,19 +171,19 @@ public class TacoOrderSystem {
             searchString = scan.nextLine();
             for (Order order : orderListORDERED) {
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
             for (Order order : orderListREADY) {
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
             for (Order order : orderListDELIVERED) {
                 if (searchString.equalsIgnoreCase(order.getCustomerName()) || searchString.equalsIgnoreCase(order.getCustomerPhone()) ||
-                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals("#" + order.getOrderID())) {
+                        searchString.equalsIgnoreCase(order.getStatus().toString()) || searchString.equals(String.valueOf(order.getOrderID()))) {
                     orderInfo.append(order);
                 }
             }
