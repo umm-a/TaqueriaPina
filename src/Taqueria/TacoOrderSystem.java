@@ -266,7 +266,7 @@ public class TacoOrderSystem {
         for (Order o : orderListORDERED) {
             List<Taco> tempList = o.getTacoList();
             for (Taco t : tempList) {
-                kitchenGUI.orderText.append("\n\n" + t.getDescription());
+                kitchenGUI.orderText.append("\n\n" + t.getName());
                 kitchenGUI.repaint();
                 kitchenGUI.revalidate();
             }
