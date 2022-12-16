@@ -100,6 +100,15 @@ public class Order {
         }
     }
 
+    public static void writeOrderToFile(Order order) {
+        try (BufferedWriter writeOrder = new BufferedWriter(new FileWriter("resources/orders.txt", true))){
+            writeOrder.write(order.toString() + "\n");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void addTaco(Taco taco) {
         tacoList.add(taco);
 //        totalPriceOrder += taco.getPrice();

@@ -112,7 +112,7 @@ public class TacoOrderSystem {
                         orderListORDERED.add(order);
                         System.out.println("Beställning skapad. \n" + order);
                         updateKitchenGUI();
-
+                        Order.writeOrderToFile(order);
                         // räklnar upp och uppdaterar filen med orderID om beställningen lyckades
                         systemOrderID++;
                         if (systemOrderID > 999) systemOrderID = 1;
