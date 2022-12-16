@@ -16,4 +16,14 @@ public class TacoShell implements Taco {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public double squishyFactor() {
+        return 1;
+    }
+
+    @Override
+    public int getNapkins() {
+        return (int) squishyFactor();
+    }
 }

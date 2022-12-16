@@ -50,6 +50,13 @@ public class Order {
         }
         return list;
     }
+    public int getTotalNapkins() {
+        int napkins = 0;
+        for (Taco taco : tacoList) {
+            napkins += taco.getNapkins();
+        }
+        return napkins;
+    }
 
     public double getTotalPriceOrder() {
         return totalPriceOrder;
@@ -124,6 +131,7 @@ public class Order {
                 "Kundens telefon: " + getCustomerPhone() + "\n" +
                 "Antal artiklar i beställningen: " + tacoList.size() + "\n" +
                 "Beställning: " + Arrays.toString(printTacoList()) + "\n" +
+                "Antal servetter till kund: " + getTotalNapkins() + "\n" +
                 "Totalpris: " + df.format(getTotalPriceOrder()) + " kr \n" +
                 "Status: " + getStatus() + "\n";
     }

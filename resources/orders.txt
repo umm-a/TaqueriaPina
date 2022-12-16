@@ -31,82 +31,11 @@ Totalpris: 99,00 kr
 Status: Beställd
 
 Order: #26
-Kundens namn: Jolly pop
-Kundens telefon: 01234
+Kundens namn: MariaWasHere
+Kundens telefon: 0761000000
 Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Ananas (10 kr)]
-Totalpris: 109,00 kr 
-Status: Beställd
-
-Order: #27
-Kundens namn: Jolly pop
-Kundens telefon: 012345
-Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Ananas (10 kr)]
-Totalpris: 109,00 kr 
-Status: Beställd
-
-Order: #28
-Kundens namn: Jolly pop
-Kundens telefon: 01234
-Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Ananas (10 kr) + Sås (10 kr)]
-Totalpris: 119,00 kr 
-Status: Beställd
-
-Order: #29
-Kundens namn: Jolly pop
-Kundens telefon: 01234
-Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Sås (10 kr) + Kött (20 kr)]
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr) + Sås (10.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 2
 Totalpris: 129,00 kr 
-Status: Beställd
-
-Order: #30
-Kundens namn: Jolly pop
-Kundens telefon: 01234
-Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Kött (20 kr) + Ananas (10 kr) + Ananas (10 kr)]
-Totalpris: 129,00 kr 
-Status: Beställd
-
-Order: #31
-Kundens namn: Pelle kanin
-Kundens telefon: 236
-Antal artiklar i beställningen: 1
-Beställning: [Tacosallad (79.0 kr) + Ananas (10 kr)]
-Totalpris: 89,00 kr 
-Status: Beställd
-
-Order: #32
-Kundens namn: Jolly pop
-Kundens telefon: 01234
-Antal artiklar i beställningen: 2
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Ananas (10 kr) + Sås (10 kr), Tortilla (89.0 kr) + Kött (20 kr) + Ost (10 kr)]
-Totalpris: 238,00 kr 
-Status: Beställd
-
-Order: #33
-Kundens namn: Pelle kanin
-Kundens telefon: 234
-Antal artiklar i beställningen: 1
-Beställning: [Tacosallad (79.0 kr) + Ananas (10 kr)]
-Totalpris: 89,00 kr 
-Status: Beställd
-
-Order: #34
-Kundens namn: Jolly pop
-Kundens telefon: 0123
-Antal artiklar i beställningen: 1
-Beställning: [Tortilla (89.0 kr) + Ananas (10 kr) + Ananas (10 kr) + Ananas (10 kr)]
-Totalpris: 119,00 kr 
-Status: Beställd
-
-Order: #35
-Kundens namn: Pelle kanin
-Kundens telefon: 2345
-Antal artiklar i beställningen: 1
-Beställning: [Tacosallad (79.0 kr) + Ananas (10 kr)]
-Totalpris: 89,00 kr 
 Status: Beställd
 
