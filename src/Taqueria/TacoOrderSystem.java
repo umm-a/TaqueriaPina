@@ -213,6 +213,7 @@ public class TacoOrderSystem {
                 scannerInput = scan.nextLine();
                 if (scannerInput.matches("[0-9]+")) {
                     orderID = Integer.parseInt(scannerInput);
+
                 } else {
                     System.out.println("Felaktig inmatning av ordernummer, försök igen");
                 }
@@ -227,7 +228,10 @@ public class TacoOrderSystem {
                     case "2" -> {
                         status = Status.READY;
                         order = getOrderFromList(orderListORDERED, orderID);
-                        assert order != null;
+                        if (order == null) {
+                            System.out.println("Order " + orderID + " finns inte eller går inte att ändra till: " + status);
+                            break;
+                        }
                         order.setStatus(status);
                         System.out.println("Beställning #" + orderID + " är nu redo att hämtas.");
                         orderListREADY.add(order);
@@ -237,7 +241,10 @@ public class TacoOrderSystem {
                     case "3" -> {
                         status = Status.DELIVERED;
                         order = getOrderFromList(orderListREADY, orderID);
-                        assert order != null;
+                        if (order == null) {
+                            System.out.println("Order " + orderID + " finns inte eller går inte att ändra till: " + status);
+                            break;
+                        }
                         order.setStatus(status);
                         System.out.println("Beställning #" + orderID + " är nu levererad.");
                         orderListDELIVERED.add(order);
@@ -245,7 +252,7 @@ public class TacoOrderSystem {
                     }
                     default -> System.out.println("Felaktig inmatning av status, försök igen");
                 }
-                System.out.println("Status på order #" + orderID + " ändrad till: " + status);
+                //System.out.println("Status på order #" + orderID + " ändrad till: " + status);
             }
         }
     }
