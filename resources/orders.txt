@@ -507,3 +507,111 @@ Antal servetter till kund: 3
 Totalpris: 218,00 kr 
 Status: Beställd
 
+Order: #79
+Kundens namn: pelle kanin
+Kundens telefon: 45213
+Antal artiklar i beställningen: 1
+Beställning: [Tacosallad (79.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 0
+Totalpris: 89,00 kr 
+Status: Beställd
+
+Order: #80
+Kundens namn: jolly pop
+Kundens telefon: 75412365
+Antal artiklar i beställningen: 2
+Beställning: [Hårt skal (89.0 kr) + Kött (10.0 kr), Tortilla (89.0 kr) + Ananas (10.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 2
+Totalpris: 208,00 kr 
+Status: Beställd
+
+Order: #81
+Kundens namn: lar svensson
+Kundens telefon: 674158
+Antal artiklar i beställningen: 2
+Beställning: [Tortilla (89.0 kr) + Ananas (10.0 kr) + Sås (10.0 kr), Hårt skal (89.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 208,00 kr 
+Status: Beställd
+
+Order: #82
+Kundens namn: pelle plutt
+Kundens telefon: 45123
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 0
+Totalpris: 99,00 kr 
+Status: Beställd
+
+Order: #83
+Kundens namn: pelle kanin
+Kundens telefon: 5412
+Antal artiklar i beställningen: 2
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr), Tacosallad (79.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 198,00 kr 
+Status: Beställd
+
+Order: #84
+Kundens namn: pelle k
+Kundens telefon: 745
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Sås (10.0 kr)]
+Antal servetter till kund: 2
+Totalpris: 109,00 kr 
+Status: Beställd
+
+Order: #85
+Kundens namn: jolly pp
+Kundens telefon: 45262
+Antal artiklar i beställningen: 1
+Beställning: [Tacosallad (79.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 0
+Totalpris: 89,00 kr 
+Status: Beställd
+
+Order: #86
+Kundens namn: pelle k
+Kundens telefon: 84564
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 99,00 kr 
+Status: Beställd
+
+Order: #87
+Kundens namn: pelle k
+Kundens telefon: 478964
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 99,00 kr 
+Status: Beställd
+
+Order: #88
+Kundens namn: pelle kanin
+Kundens telefon: 54546
+Antal artiklar i beställningen: 2
+Beställning: [Tacosallad (79.0 kr) + Ananas (10.0 kr) + Ananas (10.0 kr), Hårt skal (89.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 198,00 kr 
+Status: Beställd
+
+Order: #89
+Kundens namn: jolly pop
+Kundens telefon: 4544
+Antal artiklar i beställningen: 1
+Beställning: [Hårt skal (89.0 kr) + Sås (10.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 109,00 kr 
+Status: Beställd
+
+Order: #90
+Kundens namn: jolly pop
+Kundens telefon: 1234
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 99,00 kr 
+Status: Beställd
+
