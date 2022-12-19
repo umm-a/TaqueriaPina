@@ -255,18 +255,25 @@ public class TacoOrderSystem {
                                 order.setStatus(Status.ORDERED);
                                 System.out.println("Beställning #" + orderID + " har fått ny status " + order.getStatus() + ".\n");
                                 updateKitchenGUI();
+                                return;
                             }
                             case "2" -> {
                                 order.setStatus(Status.READY);
                                 System.out.println("Beställning #" + orderID + " har fått ny status " + order.getStatus() + ".\n");
+                                return;
                             }
                             case "3" -> System.out.println("Avbryter ändring av status.\n");
-                            default -> System.out.println("Felaktig inmatning. Försök igen.");
+                            default -> {
+                                System.out.println("Felaktig inmatning. Försök igen.");
+                                return;
+                            }
                         }
                     } else if (scannerInput.equalsIgnoreCase("N")) {
                         System.out.println("Avbryter ändring av status.\n");
+                        return;
                     } else {
                         System.out.println("Felaktig inmatning. Försök igen.");
+                        return;
                     }
                 }
                 else {
