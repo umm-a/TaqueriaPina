@@ -4,7 +4,7 @@ import Taqueria.TacoDecorator;
 import Taqueria.TacoInterface.Taco;
 
 public class ToppingMeat extends TacoDecorator {
-    private final Taco taco;
+
     private String name = "Kött";
     private Double price = 10.0;
 

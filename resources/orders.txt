@@ -785,3 +785,12 @@ Antal servetter till kund: 1
 Totalpris: 89,00 kr 
 Status: Beställd
 
+Order: #108
+Kundens namn: Thomas
+Kundens telefon: 123
+Antal artiklar i beställningen: 2
+Beställning: [Tortilla (89.0 kr) + Ost (10.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr) + Sås (10.0 kr), Tacosallad (79.0 kr) + Ananas (10.0 kr) + Ananas (10.0 kr) + Ananas (10.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 3
+Totalpris: 248,00 kr 
+Status: Beställd
+
