@@ -223,7 +223,7 @@ public class TacoOrderSystem {
                         }
                         case "3" -> System.out.println("Avbryter ändring av status.\n");
                         default -> System.out.println("Felaktig inmatning. Försök igen.");
-                    } break;
+                    } return;
                 }
                 if (order.getStatus() == Status.READY) {
                     System.out.println("Beställning #" + orderID + " har statusen " + order.getStatus() +
@@ -241,7 +241,7 @@ public class TacoOrderSystem {
                         }
                         case "3" -> System.out.println("Avbryter ändring av status.\n");
                         default -> System.out.println("Felaktig inmatning. Försök igen.");
-                    } break;
+                    } return;
                 }
                 if (order.getStatus() == Status.DELIVERED) {
                     System.out.println("OBS! Beställning #" + orderID + " är markerad som " + order.getStatus() +
@@ -274,10 +274,11 @@ public class TacoOrderSystem {
                     return;
                 }
             }
-            else {
-                System.out.println("Beställning #" + orderID + " hittades inte.\n");
-            }
+
         }
+
+            System.out.println("Beställning #" + orderID + " hittades inte.\n");
+
     }
 
     private Order getOrderFromList(ArrayList<Order> orderList, int orderID) {
