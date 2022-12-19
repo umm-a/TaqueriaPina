@@ -9,7 +9,7 @@ public class ToppingMeat extends TacoDecorator {
     private Double price = 10.0;
 
     public ToppingMeat(Taco taco) {
-        this.taco = taco;
+        super.taco = taco;
     }
 
     @Override

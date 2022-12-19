@@ -9,7 +9,7 @@ public class ToppingCheese extends TacoDecorator {
     private Double price = 10.0;
 
     public ToppingCheese(Taco taco) {
-        this.taco = taco;
+        super.taco = taco;
     }
     @Override
     public String getName() {
