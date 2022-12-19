@@ -288,15 +288,6 @@ public class TacoOrderSystem {
 
     }
 
-    private Order getOrderFromList(ArrayList<Order> orderList, int orderID) {
-        for (Order order : orderList) {
-            if (order.getOrderID() == orderID) {
-                return order;
-            }
-        }
-        return null;
-    }
-
     public void updateKitchenGUI() {
         kitchenGUI.orderText.setText("");
         for (Order o : orderList) {

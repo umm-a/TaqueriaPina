@@ -40,9 +40,6 @@ public class Order {
     public Order() {
     }
 
-    public void setTacoList(List<Taco> tacoList) {
-        this.tacoList = tacoList;
-    }
     public String[] printTacoList() {
         String[] list = new String[tacoList.size()];
         for (Taco taco : tacoList) {
@@ -118,7 +115,6 @@ public class Order {
 
     public void addTaco(Taco taco) {
         tacoList.add(taco);
-//        totalPriceOrder += taco.getPrice();
     }
     public List<Taco> getTacoList () {
         return tacoList;

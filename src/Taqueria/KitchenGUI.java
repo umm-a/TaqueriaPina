@@ -1,16 +1,13 @@
 package Taqueria;
 
 import Taqueria.Order.Order;
-import Taqueria.TacoInterface.Taco;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static javax.swing.ScrollPaneConstants.*;
 
 public class KitchenGUI extends JFrame{
-        Order order = new Order();
+
         JLabel tacoTitleLabel = new JLabel("\uD83C\uDF43 Taqueria Piña's beställningar \uD83C\uDF43");
         JPanel panel = new JPanel();
         TextArea orderText = new TextArea(20,50);
@@ -36,6 +33,5 @@ public class KitchenGUI extends JFrame{
             setLocationRelativeTo(null);
             setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-            //scrollpane på botten...?
         }
 }

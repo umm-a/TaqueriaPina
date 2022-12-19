@@ -758,3 +758,30 @@ Antal servetter till kund: 1
 Totalpris: 99,00 kr 
 Status: Beställd
 
+Order: #105
+Kundens namn: Thomas2
+Kundens telefon: 032047083
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 109,00 kr 
+Status: Beställd
+
+Order: #106
+Kundens namn: Thomas
+Kundens telefon: 0320
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 109,00 kr 
+Status: Beställd
+
+Order: #107
+Kundens namn: Thomas
+Kundens telefon: 1212334
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 89,00 kr 
+Status: Beställd
+
