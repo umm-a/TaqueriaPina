@@ -785,3 +785,21 @@ Antal servetter till kund: 1
 Totalpris: 89,00 kr 
 Status: Beställd
 
+Order: #108
+Kundens namn: pelle kanin
+Kundens telefon: 5456465
+Antal artiklar i beställningen: 1
+Beställning: [Tortilla (89.0 kr) + Kött (10.0 kr) + Ananas (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 109,00 kr 
+Status: BESTÄLLD
+
+Order: #109
+Kundens namn: jolly pop
+Kundens telefon: 5651653
+Antal artiklar i beställningen: 2
+Beställning: [Hårt skal (89.0 kr) + Ost (10.0 kr) + Kött (10.0 kr), Tacosallad (79.0 kr) + Ost (10.0 kr)]
+Antal servetter till kund: 1
+Totalpris: 198,00 kr 
+Status: BESTÄLLD
+
